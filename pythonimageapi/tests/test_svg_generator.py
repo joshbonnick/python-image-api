@@ -8,11 +8,12 @@ class TestSvgGenerator(TestCase):
         self.generator = SvgGenerator()
 
     def test_generate_svg(self):
-        svg = self.generator.generate_svg(100, 100, "ff0000")
+        svg = self.generator.generate_svg(100, 100, "ff0000", "::foo::")
         self.assertIn('<svg', svg)
         self.assertIn('width="100"', svg)
         self.assertIn('height="100"', svg)
         self.assertIn('fill="#ff0000"', svg)
+        self.assertIn('::foo::', svg)
 
     def test_detect_color_format(self):
         self.assertEqual(self.generator.detect_color_format("#000000"), "hex")
