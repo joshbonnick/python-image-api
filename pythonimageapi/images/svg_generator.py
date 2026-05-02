@@ -14,7 +14,7 @@ class SvgGenerator:
         color_format = self.detect_color_format(color)
         if color_format == 'hex':
             color = color.lstrip('#')
-        elif color_format == 'rgb':
+        elif color_format == 'rgb' or color_format == 'rgba':
             color = color.strip(')').strip('rgb(').strip(' ').split(',')
             color = self.rgb_to_hex(*color)
 
