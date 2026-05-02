@@ -2,7 +2,7 @@ import unittest
 
 from django.test import RequestFactory
 
-from pythonimageapi.views import test
+from pythonimageapi.views import images
 
 
 class ViewsTestCase(unittest.TestCase):
@@ -10,10 +10,11 @@ class ViewsTestCase(unittest.TestCase):
         # Every test needs access to the request factory.
         self.factory = RequestFactory()
 
-    def test_images_returns_ok_response(self):
+    def test_svg_returns_ok_response(self):
         request = self.factory.get("/images")
 
-        response = test.index(request)
+        response = images.svg(request)
+
         self.assertEqual(response.status_code, 200)
 
 
