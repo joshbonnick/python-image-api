@@ -7,26 +7,42 @@ class SvgGenerator:
     def __init__(self):
         pass
 
-    def generate_svg(self, width: int, height: int, color: str) -> str:
+    def generate_svg(self, width: int, height: int, color: str, text: str | None = None) -> str:
         if width <= 0 or height <= 0:
             raise ValueError("Width and height must be positive integers.")
 
         color_format = self.detect_color_format(color)
-        if color_format == 'hex':
+        if color_format is 'hex':
             color = color.lstrip('#')
-        elif color_format == 'rgb' or color_format == 'rgba':
+        elif color_format is 'rgb' or color_format is 'rgba':
             color = color.strip(')').strip('rgb(').strip(' ').split(',')
             color = self.rgb_to_hex(*color)
 
-        safe_color = escape(color)
+        safe_color = f'#{escape(color)}'
 
-        return (
+        if text is not None:
+            text = escape(str(text))
+
+        svg_parts = [
             f'<svg xmlns="http://www.w3.org/2000/svg" '
             f'width="{width}" height="{height}" '
-            f'viewBox="0 0 {width} {height}">'
-            f'<rect width="{width}" height="{height}" fill="{safe_color}" />'
-            f'</svg>'
-        )
+            f'viewBox="0 0 {width} {height}">',
+            f'<rect width="{width}" height="{height}" fill="{safe_color}" />',
+        ]
+
+        if text is not None:  # only render text when non-empty / not None
+            svg_parts.append(
+                f'<text x="50%" y="50%" '
+                f'dominant-baseline="middle" '
+                f'text-anchor="middle" '
+                f'fill="white" font-size="24px">'
+                f'{text}'
+                f'</text>'
+            )
+
+        svg_parts.append('</svg>')
+
+        return ''.join(svg_parts)
 
     def detect_color_format(self, value: str | bytes) -> str | None:
         """
