@@ -1,2 +1,2 @@
-database/data.sqlite
+database/*.sqlite3
 .venv
