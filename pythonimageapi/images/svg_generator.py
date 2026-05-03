@@ -42,7 +42,7 @@ class SvgGenerator:
         if text is not None:  # only render text when non-empty / not None
             svg_parts.append(
                 f'<text x="50%" y="50%" '
-                f'dominant-baseline="middle" '
+                f'dominant-baseline="middle" ' 
                 f'text-anchor="middle" '
                 f'fill="white" '
                 f'font-size="{font_settings.get('font_size', font_setting_defaults.get('font_size'))}" '
