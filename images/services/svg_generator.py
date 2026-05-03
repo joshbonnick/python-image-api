@@ -13,9 +13,9 @@ class SvgGenerator:
             raise ValueError("Width and height must be positive integers.")
 
         color_format = detect_color_format(color)
-        if color_format is 'hex':
+        if color_format == 'hex':
             color = color.lstrip('#')
-        elif color_format is 'rgb' or color_format is 'rgba':
+        elif color_format == 'rgb' or color_format == 'rgba':
             color = color.strip(')').strip('rgb(').strip(' ').split(',')
             color = rgb_to_hex(*color)
 
