@@ -17,7 +17,8 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get('content-type'), 'image/svg+xml')
 
-        svg = response.content.decode('utf-8')
+        svg_bytes = b"".join(response.streaming_content)
+        svg = svg_bytes.decode("utf-8")
 
         self.assertIn('<svg', svg)
         self.assertIn('width="200"', svg)
@@ -31,7 +32,8 @@ class ViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get('content-type'), 'image/svg+xml')
 
-        svg = response.content.decode('utf-8')
+        svg_bytes = b"".join(response.streaming_content)
+        svg = svg_bytes.decode("utf-8")
 
         self.assertIn('<svg', svg)
         self.assertIn('width="300"', svg)

@@ -1,9 +1,9 @@
-from django.http import HttpResponse
+from django.http import FileResponse
 
 from pythonimageapi.images.svg_generator import SvgGenerator
 
 
-def svg(request, size: str, color: str):
+def svg(request, size: str, color: str) -> FileResponse:
     generator = SvgGenerator()
 
     if "x" in size:
@@ -19,4 +19,4 @@ def svg(request, size: str, color: str):
     if 'text' in request.GET:
         text = request.GET['text']
 
-    return HttpResponse(generator.generate_svg(width, height, color, text), content_type='image/svg+xml')
+    return FileResponse(generator.generate_svg(width, height, color, text), content_type='image/svg+xml')
