@@ -2,7 +2,7 @@ import unittest
 
 from django.test import RequestFactory, TestCase
 
-from pythonimageapi.views.svgimages import SvgImages
+from images.views import SvgImages
 
 
 class ViewsTestCase(TestCase):

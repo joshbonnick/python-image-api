@@ -1,7 +1,7 @@
 from django.http import FileResponse
 from django.views import View
 
-from pythonimageapi.images.svg_generator import SvgGenerator
+from images.services.svg_generator import SvgGenerator
 
 
 class SvgImages(View):

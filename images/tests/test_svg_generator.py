@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from pythonimageapi.images.svg_generator import SvgGenerator
+from images.services.svg_generator import SvgGenerator
 
 
 class TestSvgGenerator(TestCase):

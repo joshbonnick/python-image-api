@@ -1,6 +1,6 @@
 from html import escape
 
-from .services.color import detect_color_format, rgb_to_hex
+from images.services.color import detect_color_format, rgb_to_hex
 
 
 class SvgGenerator:

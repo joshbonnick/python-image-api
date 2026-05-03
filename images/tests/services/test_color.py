@@ -1,6 +1,6 @@
 from django.test import SimpleTestCase
 
-from pythonimageapi.images.services import color
+from images.services import color
 
 
 class TestSvgGenerator(SimpleTestCase):
