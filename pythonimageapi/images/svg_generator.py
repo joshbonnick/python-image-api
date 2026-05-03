@@ -31,18 +31,22 @@ class SvgGenerator:
             f'<rect width="{width}" height="{height}" fill="{safe_color}" />',
         ]
 
+        font_setting_defaults = {
+            "font_family": "Arial",
+            "font_size": f"{min(width, height) // 2}px",
+        }
+
         if font_settings is None:
-            font_settings = {
-                "font_family": "Arial",
-                "font_size": f"{min(width, height) // 2}px",
-            }
+            font_settings = font_setting_defaults.copy()
 
         if text is not None:  # only render text when non-empty / not None
             svg_parts.append(
                 f'<text x="50%" y="50%" '
                 f'dominant-baseline="middle" '
                 f'text-anchor="middle" '
-                f'fill="white" font-size="{font_settings['font_size']}" font-family="{font_settings['font_family']}, sans-serif">'
+                f'fill="white" '
+                f'font-size="{font_settings.get('font_size', font_setting_defaults.get('font_size'))}" '
+                f'font-family="{font_settings.get('font_family', font_setting_defaults.get('font_family'))}, sans-serif">'
                 f'{text}'
                 f'</text>'
             )

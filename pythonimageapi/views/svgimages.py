@@ -9,9 +9,13 @@ class SvgImages(View):
         generator = SvgGenerator()
 
         args = {}
+        font_settings = {}
 
         if 'text' in request.GET:
             args['text'] = request.GET['text']
+
+        if 'font_size' in request.GET:
+            font_settings["font_size"] = request.GET['font_size']
 
         if color is not None:
             args['color'] = color
@@ -25,5 +29,7 @@ class SvgImages(View):
             else:
                 args['width'] = int(size)
                 args['height'] = int(size)
+
+        args['font_settings'] = font_settings
 
         return FileResponse(generator.generate_svg(**args), content_type='image/svg+xml')
