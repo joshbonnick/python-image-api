@@ -7,7 +7,8 @@ class SvgGenerator:
     def __init__(self):
         pass
 
-    def generate_svg(self, width: int, height: int, color: str, text: str | None = None) -> str:
+    def generate_svg(self, width: int = 300, height: int = 300, color: str = "e3e3e3", text: str | None = None,
+                     font_settings: dict[str, str] | None = None) -> str:
         if width <= 0 or height <= 0:
             raise ValueError("Width and height must be positive integers.")
 
@@ -30,12 +31,18 @@ class SvgGenerator:
             f'<rect width="{width}" height="{height}" fill="{safe_color}" />',
         ]
 
+        if font_settings is None:
+            font_settings = {
+                "font_family": "Arial",
+                "font_size": f"{min(width, height) // 2}px",
+            }
+
         if text is not None:  # only render text when non-empty / not None
             svg_parts.append(
                 f'<text x="50%" y="50%" '
                 f'dominant-baseline="middle" '
                 f'text-anchor="middle" '
-                f'fill="white" font-size="24px">'
+                f'fill="white" font-size="{font_settings['font_size']}" font-family="{font_settings['font_family']}, sans-serif">'
                 f'{text}'
                 f'</text>'
             )

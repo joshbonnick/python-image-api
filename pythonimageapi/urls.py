@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from pythonimageapi.views import images
+from pythonimageapi.views.svgimages import SvgImages
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('svg/<path:size>/<path:color>', images.svg, name="svg_generator")
+    path('svg/<path:size>/<path:color>', SvgImages.as_view()),
+    path('svg/<path:size>', SvgImages.as_view()),
+    path('svg/', SvgImages.as_view()),
 ]
