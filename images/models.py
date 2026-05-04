@@ -6,7 +6,7 @@ class ImageGeneration(models.Model):
         SVG = "SVG"
 
     type = models.CharField(max_length=4, choices=ImageType, db_index=True)
-    size = models.CharField(max_length=255)
+    size = models.JSONField()
     color = models.CharField(max_length=255)
     text = models.TextField(null=True, blank=True)
 

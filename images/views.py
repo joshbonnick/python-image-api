@@ -1,6 +1,8 @@
 from django.http import FileResponse
+from django.utils import timezone
 from django.views import View
 
+import images.models
 from images.services.svg_generator import SvgGenerator
 
 
@@ -31,5 +33,13 @@ class SvgImages(View):
                 args['height'] = int(size)
 
         args['font_settings'] = font_settings
+
+        images.models.ImageGeneration(
+            type="SVG",
+            size={"width": args.get('width'), "height": args.get('height')},
+            color=args.get('color'),
+            text=args.get('text'),
+            timestamp=timezone.now()
+        ).save()
 
         return FileResponse(generator.generate_svg(**args), content_type='image/svg+xml')

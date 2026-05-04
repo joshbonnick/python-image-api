@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('type', models.CharField(choices=[('SVG', 'Svg')], db_index=True, max_length=4)),
-                ('size', models.CharField(max_length=255)),
+                ('size', models.JSONField()),
                 ('color', models.CharField(max_length=255)),
                 ('text', models.TextField(blank=True, null=True)),
                 ('timestamp', models.DateTimeField(verbose_name='date generated')),
