@@ -1,4 +1,4 @@
-from django.http import JsonResponse
+from django.shortcuts import render
 from django.urls import get_resolver, URLPattern, URLResolver
 
 
@@ -21,7 +21,5 @@ def extract_patterns(patterns, prefix=""):
 
 def index(request):
     resolver = get_resolver()
-
     routes = [route for route in extract_patterns(resolver.url_patterns) if 'admin/' not in route]
-
-    return JsonResponse(routes, json_dumps_params={"indent": True}, safe=False)
+    return render(request, 'home.html', {'routes': routes})

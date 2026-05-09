@@ -58,7 +58,7 @@ ROOT_URLCONF = 'pythonimageapi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'pythonimageapi/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

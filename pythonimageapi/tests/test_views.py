@@ -42,7 +42,7 @@ class ViewsTestCase(TestCase):
 
     def test_accepts_various_url_styles(self):
         request = self.factory.get("/svg/200")
-        response = SvgImages().get(request, "200")
+        response = SvgImages().get(request, "200", 'f00')
 
         svg_bytes = b"".join(response.streaming_content)
         svg = svg_bytes.decode("utf-8")
